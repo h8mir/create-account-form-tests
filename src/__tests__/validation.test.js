@@ -15,19 +15,35 @@ import {
     });
   
     test('valid password passes', () => {
-      expect(isPasswordValid('123456')).toBe(true);
+      expect(isPasswordValid('Abc123!')).toBe(true);
     });
   
     test('short password fails', () => {
-      expect(isPasswordValid('123')).toBe(false);
+      expect(isPasswordValid('A1!')).toBe(false); 
+    });
+  
+    test('password without uppercase fails', () => {
+      expect(isPasswordValid('abc123!')).toBe(false);
+    });
+  
+    test('password without lowercase fails', () => {
+      expect(isPasswordValid('ABC123!')).toBe(false);
+    });
+  
+    test('password without number fails', () => {
+      expect(isPasswordValid('Abcdef!')).toBe(false);
+    });
+  
+    test('password without special character fails', () => {
+      expect(isPasswordValid('Abc1234')).toBe(false);
     });
   
     test('matching passwords pass', () => {
-      expect(doPasswordsMatch('abc123', 'abc123')).toBe(true);
+      expect(doPasswordsMatch('Abc123!', 'Abc123!')).toBe(true);
     });
   
     test('non-matching passwords fail', () => {
-      expect(doPasswordsMatch('abc123', 'abc321')).toBe(false);
+      expect(doPasswordsMatch('Abc123!', 'Abc321!')).toBe(false);
     });
   
     test('valid date passes', () => {
