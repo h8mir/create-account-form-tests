@@ -3,10 +3,21 @@ export const isEmailValid = (email) => {
     return regex.test(email);
 };
 
-export const isPasswordValid = (password) => {
-    const regex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d!@#$%^&*(),.?":{}|<>]{6,}$/;
-    return regex.test(password);
-};
+export function isPasswordValid(password) {
+    const minLength = /.{6,}/;
+    const hasUpperCase = /[A-Z]/;
+    const hasLowerCase = /[a-z]/;
+    const hasNumber = /[0-9]/;
+    const hasSpecialChar = /[^A-Za-z0-9]/;
+  
+    return (
+      minLength.test(password) &&
+      hasUpperCase.test(password) &&
+      hasLowerCase.test(password) &&
+      hasNumber.test(password) &&
+      hasSpecialChar.test(password)
+    );
+  }
 
 export const doPasswordsMatch = (password, confirmPassword) => {
     return password === confirmPassword;
